@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,22 +17,22 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::where('user_id' , Auth::id())->get();
+        $orders = OrderDetail::where('user_id' , Auth::id())->get();
         return view('frontend.orders.index' , compact('orders'));
     }
 
 
     public function view($id)
     {
-        $myOrder = Order::where('id' , $id)->where('user_id' , Auth::id())->first();
+        $myOrder = OrderDetail::where('id' , $id)->where('user_id' , Auth::id())->first();
         return view('frontend.orders.view' , compact('myOrder'));
     }
 
     public function deleteOrder($id)
     {
         if(Auth::check()) {
-            if (Order::where('user_id', Auth::id())->exists())
-                $myOrder = Order::where('user_id', Auth::id())->findOrFail($id)->first();
+            if (OrderDetail::where('user_id', Auth::id())->exists())
+                $myOrder = OrderDetail::where('user_id', Auth::id())->findOrFail($id)->first();
 //            if($myOrder) {
                 $myOrder->delete();
                 toastr()->error('Successfully Deleted this Order');
