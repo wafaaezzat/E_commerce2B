@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    public $guarded = [];
+
+
+    public function category(){
+
+        return $this->belongsTo(Category::class, 'category_id' , 'id');
+
+    }
+
+    protected function productImages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Image::class, 'product_id' , 'id');
+    }
+
 }

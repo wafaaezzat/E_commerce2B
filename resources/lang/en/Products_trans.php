@@ -1,0 +1,32 @@
+<?php
+
+return [
+    'Products_Page'=>'Products Page',
+    'Ratings'=>'Ratings',
+    'No_Rating'=>'No_Rating',
+    'Original_Price'=>'Original Price',
+    'Selling_Price'=>'Selling Price',
+    'Trending'=>'Trending',
+    'Add_to_Cart'=>'Add to Cart',
+    'Add_to_Wishlist'=>'Add to Wishlist',
+    'Description'=>'Description',
+    'Rate_this_product'=>'Rate this ProductRequest',
+    'Quantity'=>'Quantity',
+    'Rate'=>'Rate',
+    'Write&&Edit_a_Review'=>'Write || Edit a Review',
+    'Reviewed_on'=>'Reviewed On',
+    'Products_Category'=>'Category',
+    'Products_Name'=>'Product Name',
+    'Products_SellingPrice'=>'Product Selling Price',
+    'Products_Images'=>'Product Image',
+    'Products_Action'=>'Product Actions',
+    'addNewProduct'=>'Add New Product',
+    'Products'=>'Products',
+    'Select_Category'=>'Select Category',
+    'EditProduct'=>' Edit Product',
+    'Name_En'=>'Name',
+    'Title'=>'Title',
+    'Products_OriginalPrice'=>'Products Original Price',
+    'Products_Selling_Price'=>'Products Selling Price',
+
+];

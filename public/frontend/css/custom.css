@@ -1,0 +1,91 @@
+
+*{
+    /*font-family: 'Cairo', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
+}
+
+.checkout-form label{
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.checkout-form input{
+    font-size: 14px;
+    font-weight: 400;
+    padding: 5px;
+}
+
+.order-details label{
+    font-size: 12px;
+    font-weight: 700;
+}
+.order-details div{
+    font-size: 14px;
+    padding: 5px !important;
+}
+
+/*rating*/
+body{
+    background: #222225;
+    /*margin: 100px auto;*/
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+/*svg:not(:root).svg-inline--fa {*/
+/*     overflow: visible;*/
+/*}*/
+
+/* .svg-inline--fa.fa-w-18 {*/
+/* width: 1.125em;*/
+/*}*/
+/*.svg-inline--fa {*/
+/*    display: inline-block;*/
+/*    font-size: inherit;*/
+/*    height: 1em;*/
+/*    !*overflow: visible;*!*/
+/*    vertical-align: -0.125em;*/
+/*}*/
+/*svg {*/
+/*    !*vertical-align: middle;*!*/
+/*    width: 0% !important;*/
+/*}*/
+
+.rating div{
+color:#ffe400;
+font-size: 20px;
+font-weight: 800;
+text-align: center;
+text-transform: uppercase;
+padding: 20px 0;
+}
+
+.rating  input{
+display:none;
+}
+
+.rating  input + label{
+font-size: 30px;
+text-shadow: 1px 1px 0 #8f8420;
+cursor: pointer;
+}
+.rating input:checked + label ~ label{
+color:#b4afaf;
+}
+.rating label:active{
+transform: scale(0.8);
+transition: 0.3s ease;
+}
+
+.checked{
+color:#ffe400;
+}
+
+.whatsapp-chat{
+bottom: 20%;
+right: 10px;
+position: fixed;
+}

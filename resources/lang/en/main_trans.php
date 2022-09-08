@@ -1,0 +1,42 @@
+<?php
+
+return [
+
+    'My_Dashboard'=>'My Dashboard',
+    'Login'=>'Login',
+    'Register'=>'Register',
+    'Dashboard'=>'Home',
+    'Welcome_dandy'=>'Welcome To 2B E-Shop',
+    'Search_Products'=>'Search Products',
+    'contact'=>'Contact Us',
+    'New_Collection'=>'New Collection',
+    'Collections'=>'Collections',
+    'Categories' => 'Categories',
+    'Cart' => 'Cart',
+    'Wishlists'=> 'Wishlists',
+    'MyOrders'=> 'My Orders',
+    'MyCart'=> 'My Cart',
+    'MyWishLists'=>'My WishLists',
+    'Logout' => 'Logout',
+    'CheckOut'=>'CheckOut',
+    'myCheckOut'=>'my CheckOut',
+    'Continue_to_Shopping' => 'Continue to Shopping',
+    'Continue_to_ordersHistory'=>'orders History',
+    'LE'=>'LE',
+    'Back'=>'Back',
+    'submit' => 'Submit',
+    'send'=>'Send',
+    'Processes'=>'Processes',
+    'Edit'=>'Edit',
+    'update'=>'Update',
+    'exists'=>'exists',
+    'Delete'=>'Delete',
+    'Close' => 'Close',
+    'Features_Categories'=>'Features Categories',
+    'clickHere'=>'click here',
+    'No_image'=>'No image found',
+    'have'=>'have',
+    'quantity_only'=>'quantity only',
+
+
+];

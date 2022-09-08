@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string("name");
             $table->string("desc");
             $table->decimal("price");
-            $table->string("status");
+            $table->string('quantity');
+            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('trending')->default(0);
             $table->unsignedBigInteger('created_by')->index();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('last_modified_user')->index();
