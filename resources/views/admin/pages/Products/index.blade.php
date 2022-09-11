@@ -35,14 +35,9 @@
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->price}}</td>
                                         <td>
-                                              @foreach($product->productImages as $image)
-                                                @if(isset($image->image))
-                                                    <a href="{{URL::asset($image->image)}}" target="_blank">
-                                                        <img src="{{URL::asset($image->image)}}" alt="{{$image->image}}"
-                                                             class="img-thumbnail" width="100" height="100" />
-                                                    </a>
-                                                @endif
-                                            @endforeach
+                                              <a href="{{URL::asset($product->banner_image)}}" target="_blank" >
+                                                  <img src="{{asset($product->banner_image)}}" class="img-thumbnail" width="100" height="100">
+                                              </a>
                                            </td>
                                         <td>
                                             <a href="{{route('products.edit', $product->id)}}" class="btn btn-primary btn-sm">

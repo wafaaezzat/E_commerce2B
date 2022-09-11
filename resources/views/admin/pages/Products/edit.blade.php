@@ -65,15 +65,35 @@
                             </div>
 
                             <div class="col-md-12 mb-3">
-                                <input type="file" multiple name="images[]" class="form-control" value="{{ old('images') }}" required>
-                                @error('images')<div class="text-danger">{{$message}}</div>@enderror
-
-                                @if($product->image)
-                                    <img src="{{URL::asset($product->image)}}" alt="{{$product->image}}"
+                                <input type="file" name="banner_image" class="form-control" value="{{ old('banner_image') }}" required>
+                                @error('banner_image')<div class="text-danger">{{$message}}</div>@enderror
+                                @if($product->banner_image)
+                                    <img src="{{URL::asset($product->banner_image)}}" alt="{{$product->banner_image}}"
                                          class="img-thumbnail" width="100" height="100" />
                                 @else
                                     <p>{{trans('main_trans.No_image')}}</p>
                                 @endif
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <input type="file" multiple name="images[]" class="form-control" value="{{ old('images') }}" required>
+                                @error('images')<div class="text-danger">{{$message}}</div>@enderror
+
+{{--                                @if($product->image)--}}
+{{--                                    <img src="{{URL::asset($product->image)}}" alt="{{$product->image}}"--}}
+{{--                                         class="img-thumbnail" width="100" height="100" />--}}
+{{--                                @else--}}
+{{--                                    <p>{{trans('main_trans.No_image')}}</p>--}}
+{{--                                @endif--}}
+
+                                @foreach($product->productImages as $image)
+                                    @if(isset($image->image))
+                                            <img src="{{URL::asset($image->image)}}" alt="{{$image->image}}"
+                                                 class="img-thumbnail" width="100" height="100" />
+                                    @else
+                                        <p>{{trans('main_trans.No_image')}}</p>
+                                    @endif
+                                @endforeach
 
                             </div>
 

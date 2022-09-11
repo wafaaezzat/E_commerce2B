@@ -50,6 +50,13 @@ class ProductController extends Controller
                 toastr()->error('عذرا البيانات التي ادخلتها غير صحيحه');
                 return redirect()->route('products.create')->withErrors($validator)->withInput();
             }
+//banner image
+            if($request->hasFile('banner_image')) {
+                $banner_image = $request->banner_image;
+                $newBannerImage = time() . $banner_image->getClientOriginalName(); // getClientOriginalName بيفصلي ام الصوره عن الامتداد بتاعها
+//  time() => عشان يكريتلي رقم عشوائي قبل اسم الصوه عشان لو الصوره اتكررت ترتفع عادي بس اسمها هيختلف عشان الرقم العشوائي دا
+                $banner_image->move(public_path('uploads/Products/BannerImage/' . $request->name ), $newBannerImage);
+            }
 
             if ($request->hasFile('images')) {
                 $photos = $request->images;
@@ -68,7 +75,7 @@ class ProductController extends Controller
             $product = new Product();
                 $product->category_id = $request->category_id;
                 $product->name = $request->name;
-//                $product->slug = $request->slug . rand(1111, 9999);
+                $product->banner_image = 'uploads/Products/BannerImage/' . $request->name . '/'. $newBannerImage;
                 $product->desc = $request->desc;
                 $product->price = $request->price;
                 $product->quantity = $request->quantity;
@@ -120,7 +127,23 @@ class ProductController extends Controller
 
         $product = Product::where('id', $id)->first();
         $product_images = Image::where('product_id' , $product->id)->get();
-//  delete images if found to update them later
+
+
+        if($request->hasFile('banner_image')) {
+
+            $banner_image_path = $product->banner_image;
+            if(File::exists($banner_image_path)) {
+                File::delete($banner_image_path); // delete path from public uploads
+            }
+            $banner_image = $request->file('banner_image');
+            $newBannerImage = time() . $banner_image->getClientOriginalName(); // getClientOriginalName بيفصلي ام الصوره عن الامتداد بتاعها
+//  time() => عشان يكريتلي رقم عشوائي قبل اسم الصوه عشان لو الصوره اتكررت ترتفع عادي بس اسمها هيختلف عشان الرقم العشوائي دا
+            $banner_image->move(public_path('uploads/Products/BannerImage/' . $request->id), $newBannerImage); // put photo in filed in public uploads
+
+            // هحط تعديل الصوره هنا عشان لو مفيش صوره يحط القديمه زي م هي وميطلعش اي ايررور بس كدا
+            $product->banner_image = 'uploads/Products/BannerImage/' . $request->id . '/'. $newBannerImage;  // $file_name => هي اسم الصوره بدون امتداد
+        }
+
         if (isset($product_images)) {
 //   delete folder of images from public
             $folder = $product->name;

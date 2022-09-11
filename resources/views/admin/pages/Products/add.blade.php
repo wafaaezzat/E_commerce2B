@@ -75,6 +75,11 @@
                                 <input type="checkbox" name="trending">
                             </div>
 
+                            <div class="col-md-12 mb-3">
+                                <input type="file" name="banner_image" class="form-control" value="{{ old('banner_image') }}" required>
+                                @error('banner_image')<div class="text-danger">{{$message}}</div>@enderror
+                            </div>
+
 {{-- multiple --}}
                             <div class="col-md-12 mb-3">
                                 <input type="file" multiple name="images[]" class="form-control" value="{{ old('images') }}" required>
