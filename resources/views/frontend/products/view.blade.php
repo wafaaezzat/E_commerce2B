@@ -28,9 +28,17 @@
                 <div class="row">
 
                     <div class="col-md-4 border-right">
-                        <a href="{{URL::asset($product->image)}}" target="_blank" style="width: 100%">
-                        <img src="{{asset($product->image)}}" class="w-100" alt="">
-                        </a>
+{{--                        <a href="{{URL::asset($product->image)}}" target="_blank" style="width: 100%">--}}
+{{--                        <img src="{{asset($product->image)}}" class="w-100" alt="">--}}
+{{--                        </a>--}}
+                        @foreach($product->productImages as $image)
+                            @if(isset($image->image))
+                                <a href="{{URL::asset($image->image)}}" target="_blank">
+                                    <img src="{{URL::asset($image->image)}}" alt="{{$image->image}}"
+                                         class="w-100" />
+                                </a>
+                            @endif
+                        @endforeach
                     </div>
 
                     <div class="col-md-8">
@@ -45,12 +53,12 @@
                           @endif
                         </h2>
                         <hr>
-                        <label class="me-3" style="font-size:16px"> {{trans('Products_trans.Original_Price')}}: <s> {{$product->original_price}} {{trans('main_trans.LE')}} </s> </label>
+                        <label class="me-3" style="font-size:16px"> {{trans('Products_trans.Original_Price')}}: <s> {{$product->price}} {{trans('main_trans.LE')}} </s> </label>
                         <br>
-                        <label class="fw-bold" style="font-size:16px"> {{trans('Products_trans.Selling_Price')}}: {{$product->selling_price}} {{trans('main_trans.LE')}} </label>
+                        <label class="fw-bold" style="font-size:16px"> {{trans('Products_trans.Selling_Price')}}: {{$product->price}} {{trans('main_trans.LE')}} </label>
 
                         <p class="mt-3">
-                          {!! $product->small_description !!}
+                          {!! $product->desc !!}
                         </p>
                         <hr>
 

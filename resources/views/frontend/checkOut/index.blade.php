@@ -118,14 +118,14 @@
                                         <td>{{$item->product_quantity}}</td>
                                         <td>{{$item->size}}</td>
                                         <?php
-                                        $num1 = $item->product->selling_price;
+                                        $num1 = $item->product->price;
                                         $num2 = $item->product_quantity;
                                         $multiplication  = $num1 * $num2;
                                         ?>
                                         <td class="text-primary"> {{$multiplication}} {{trans('main_trans.LE')}}</td>
                                         <input type="hidden" name="price" value="{{$multiplication}}">
                                     </tr>
-                                    @php $total += $item->product->selling_price * $item->product_quantity @endphp
+                                    @php $total += $item->product->price * $item->product_quantity @endphp
                                 @endforeach
                                 </tbody>
                             </table>

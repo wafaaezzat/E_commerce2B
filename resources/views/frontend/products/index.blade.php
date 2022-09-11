@@ -30,8 +30,8 @@
 
                             <div class="card-body">
                                 <h5> {{$prod->name}} </h5>
-                                <p> {{$prod->small_description}} </p>
-                                <small class="float-start"> {{$prod->selling_price}} {{trans('main_trans.LE')}} </small>
+                                <p> {{$prod->desc}} </p>
+                                <small class="float-start"> {{$prod->price}} {{trans('main_trans.LE')}} </small>
                                 <small class="float-end"> <s> {{$prod->original_price}} {{trans('main_trans.LE')}} </s> </small>
                             </div>
 

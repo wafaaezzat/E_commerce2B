@@ -83,7 +83,7 @@ class CheckOutController extends Controller
                     $cartItem_total_price = Cart::where('user_id', Auth::id())->get();
                     foreach ($cartItem_total_price as $total_price) {
 //                $total += $total_price->product->selling_price;
-                        $total += $total_price->product->selling_price * $total_price->product_quantity;
+                        $total += $total_price->product->price * $total_price->product_quantity;
                         $news = \App\Models\News::where('status', 1)->latest()->first();
 
                         if ($news) {
@@ -121,7 +121,7 @@ class CheckOutController extends Controller
                         $orders->quantity = $item->product_quantity;
                         $orders->size = $item->size;
 
-                        $num1 = $item->product->selling_price;
+                        $num1 = $item->product->price;
                         $num2 = $item->product_quantity;
                         $multiplication = $num1 * $num2;
 
@@ -319,7 +319,7 @@ class CheckOutController extends Controller
         $total_price = 0;
         $cartItems = Cart::where('user_id', Auth::id())->get();
         foreach ($cartItems as $item){
-            $total_price += $item->product->selling_price * $item->product_quantity;
+            $total_price += $item->product->price * $item->product_quantity;
         }
 
         $firstname = $request->input('firstname'); // input('firstname') => دا جاي من ملف ال checkout.js

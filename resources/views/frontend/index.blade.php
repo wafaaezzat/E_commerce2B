@@ -122,12 +122,19 @@
                    <div class=" item mb-5" th:each="tempCard : ${cards}">
                        <a href="{{route('view_product',[$category->id , $Prod->id])}}">
                        <div class="photo">
-                           <img src="{{asset($Prod->image)}}"  height="150" alt="">
+                           @foreach($Prod->productImages as $image)
+                               @if(isset($image->image))
+
+                                       <img src="{{URL::asset($image->image)}}" alt="{{$image->image}}"
+                                            class="img-thumbnail" width="100" height="100" />
+                               @endif
+                           @endforeach
+{{--                           <img src="{{asset($Prod->image)}}"  height="150" alt="">--}}
                                    <div class="card h-100 my-card-style">
                                        <div class="card-body">
                                            <h5 class="card-title" th:text="${tempCard.title}"> {{$Prod->name}} </h5>
                                            <p  class="card-text text-truncate" th:text="${tempCard.text}"> {{$Prod->small_description}} </p>
-                                           <small class="float-start"> {{$Prod->selling_price}} {{trans('main_trans.LE')}} </small>
+                                           <small class="float-start"> {{$Prod->price}} {{trans('main_trans.LE')}} </small>
                                            <small class="float-end"> <s> {{$Prod->original_price}} {{trans('main_trans.LE')}} </s> </small>
                                        </div>
                                    </div>

@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="col-md-2 my-auto">
-                        <h6> {{$item->product->selling_price}} {{trans('main_trans.LE')}}  </h6>
+                        <h6> {{$item->product->price}} {{trans('main_trans.LE')}}  </h6>
                     </div>
 
 
@@ -63,7 +63,7 @@
 {{--                        @error('size')<div class="text-danger">{{$message}}</div>@enderror--}}
 {{--                    </div>--}}
 
-                            @php $total += $item->product->selling_price * $item->product_quantity @endphp
+                            @php $total += $item->product->price * $item->product_quantity @endphp
                         @else
                         <div class="col-md-3">
                             <div class="input-group text-center mb-3" style="width: 190px;">
