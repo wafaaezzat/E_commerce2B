@@ -31,6 +31,7 @@
                             </div>
 
                             <div class="col-md-12 mb-3">
+                                <label for="image">Select an Image:</label>
                                 <input type="file" name="image" class="form-control" value="{{$category->image}}" required>
                                 @error('image')<div class="text-danger">{{$message}}</div>@enderror
 {{--                                value="{{ old('image') }}"--}}

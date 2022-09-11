@@ -76,13 +76,15 @@
                             </div>
 
                             <div class="col-md-12 mb-3">
-                                <input type="file" name="banner_image" class="form-control" value="{{ old('banner_image') }}" required>
+                                <label for="myfile">Select a Banner Image:</label>
+                                <input type="file" id="banner_image" name="banner_image" class="form-control" value="{{ old('banner_image') }}" required>
                                 @error('banner_image')<div class="text-danger">{{$message}}</div>@enderror
                             </div>
 
 {{-- multiple --}}
                             <div class="col-md-12 mb-3">
-                                <input type="file" multiple name="images[]" class="form-control" value="{{ old('images') }}" required>
+                                <label for="images">Select Multiple Images:</label>
+                                <input type="file" multiple id="images" name="images[]" class="form-control" value="{{ old('images') }}" required>
                                 @error('images')<div class="text-danger">{{$message}}</div>@enderror
                             </div>
 
