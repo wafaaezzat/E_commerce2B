@@ -16,12 +16,12 @@ class AdminSeeder extends Seeder
         DB::table('users')->delete();
         $admin = new User();
 
-        $admin->firstname = 'Ahmed esh';
-        $admin->lastname = 'ads';
+        $admin->firstname = 'wafaa';
+        $admin->lastname = 'ezzat';
         $admin->email = 'admin@admin.com';
-        $admin->password = Hash::make('123456789');
-        $admin->phone = '01092366331';
-        $admin->address = 'farouk';
+        $admin->password = Hash::make('11111111');
+        $admin->phone = '01123547811';
+        $admin->address = 'mitghamer';
         $admin->role = 1;
         $admin->save();
     }

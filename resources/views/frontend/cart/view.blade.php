@@ -23,7 +23,7 @@
             <div class="card-body">
                 @php $total = 0 @endphp
              @foreach($cartItems as $item)
-                <div class="row my-3 product_data"> {{-- product_data => مستخدمها فال ajax--}}
+                <div class="row my-3 product_data">
                     <div class="col-md-2">
                         <img src="{{asset($item->product->image)}}" height="70px" width="70px" alt="">
                     </div>
@@ -48,20 +48,7 @@
                             <button class="input-group-text changeQuantity increment-btn" style="cursor: default"> + </button>
                         </div>
                     </div>
-{{--                        @include('frontend.cart.radioCart');--}}
 
-{{--                    <div class="col-md-2 mb-3">--}}
-{{--                        <label> Size </label>--}}
-{{--                        <select class="form-control  size" name='size'>--}}
-{{--                            <option selected disabled> Select Size </option>--}}
-
-{{--                            @foreach($sizes as $size)--}}
-{{--                                <option value="{{$size['id']}}" >{{$size['size_id']}} </option> دا عشان يرجعلي اللي موجود معايا بالفعل--}}
-{{--                            @endforeach--}}
-
-{{--                        </select>--}}
-{{--                        @error('size')<div class="text-danger">{{$message}}</div>@enderror--}}
-{{--                    </div>--}}
 
                             @php $total += $item->product->price * $item->product_quantity @endphp
                         @else
@@ -107,5 +94,5 @@
 
     </div>
         <br><br>
-{{--    {!! $cartItems->links() !!}--}}
+
 @endsection
