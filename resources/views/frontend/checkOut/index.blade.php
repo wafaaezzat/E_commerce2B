@@ -31,13 +31,13 @@
 
                             <div class="col-md-6">
                                 <label> {{trans('Orders_trans.First_Name')}} </label>
-                                <input type="text" name="fname" value="{{Auth::user()->name}}" class="form-control firstname" placeholder="enter your first name" required>
+                                <input type="text" name="fname" value="{{Auth::user()->firstname}}" class="form-control firstname" placeholder="enter your first name" required>
                                 <span id="fname_error" class="text-danger form-control-sm"> </span>
                             </div>
 
                             <div class="col-md-6">
                                 <label> {{trans('Orders_trans.Last_Name')}} </label>
-                                <input type="text" name="lname" value="{{auth()->user()->lname}}" class="form-control lastname" placeholder="enter your last name" required>
+                                <input type="text" name="lname" value="{{auth()->user()->lastname}}" class="form-control lastname" placeholder="enter your last name" required>
                                 <span id="lname_error" class="text-danger form-control-sm"> </span>
                             </div>
 
@@ -59,36 +59,6 @@
                                 <span id="address_error" class="text-danger form-control-sm"> </span>
                             </div>
 
-{{--                            <div class="col-md-6">--}}
-{{--                                <label> {{trans('Orders_trans.Detailed_Address')}} </label>--}}
-{{--                                <input type="text" name="address2" value="{{Auth::user()->address2}}" class="form-control address2" placeholder="enter your address 2" required>--}}
-{{--                                <span id="address2_error" class="text-danger form-control-sm"> </span>--}}
-{{--                            </div>--}}
-
-                            <div class="col-md-6">
-                                <label> {{trans('CheckOut_Trans.City')}} </label>
-                                <input type="text" name="city" value="{{Auth::user()->city}}" class="form-control city" placeholder="enter your city" required>
-                                <span id="city_error" class="text-danger form-control-sm"> </span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label> {{trans('CheckOut_Trans.State')}} </label>
-                                <input type="text" name="state" value="{{Auth::user()->state}}" class="form-control state" placeholder="enter your state" required>
-                                <span id="state_error" class="text-danger form-control-sm"> </span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label> {{trans('CheckOut_Trans.Country')}} </label>
-                                <input type="text" name="country" value="{{Auth::user()->country}}" class="form-control country" placeholder="enter your country" required>
-                                <span id="country_error" class="text-danger form-control-sm"> </span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label> {{trans('Orders_trans.Zip_Code')}} </label>
-                                <input type="text" name="pinCode" value="{{Auth::user()->pincode}}" class="form-control pincode" placeholder="enter your pin Ccde" required>
-                                <span id="pincode_error" class="text-danger form-control-sm"> </span>
-                            </div>
-
                         </div>
                     </div>
 
@@ -107,7 +77,6 @@
                                 <thead class=" text-primary">
                                 <th> {{trans('CheckOut_Trans.Name')}} </th>
                                 <th> {{trans('Products_trans.Quantity')}} </th>
-                                <th> {{trans('Products_trans.Size')}}</th>
                                 <th> {{trans('Orders_trans.Total_Price')}} </th>
                                 </thead>
                                 <tbody>
@@ -115,23 +84,20 @@
                                 @foreach($cartItems as $item)
                                     <tr>
                                         <td>{{$item->product->name}}</td>
-                                        <td>{{$item->product_quantity}}</td>
-                                        <td>{{$item->size}}</td>
+                                        <td>{{$item->quantity}}</td>
                                         <?php
                                         $num1 = $item->product->price;
-                                        $num2 = $item->product_quantity;
+                                        $num2 = $item->quantity;
                                         $multiplication  = $num1 * $num2;
                                         ?>
                                         <td class="text-primary"> {{$multiplication}} {{trans('main_trans.LE')}}</td>
                                         <input type="hidden" name="price" value="{{$multiplication}}">
                                     </tr>
-                                    @php $total += $item->product->price * $item->product_quantity @endphp
+                                    @php $total += $item->product->price * $item->quantity @endphp
                                 @endforeach
                                 </tbody>
                             </table>
-{{--                            <h6 class="px-2"> {{trans('Orders_trans.Grand_Total')}}: --}}
-{{--                                <span class="float-end total_price"> {{$total}} {{trans('main_trans.LE')}} </span> --}}
-{{--                            </h6>--}}
+
                             <h6> {{trans('Orders_trans.Total_Price')}}:
                                 @if(\Illuminate\Support\Facades\App::getLocale() == 'ar')
                                     <span class="float-start total_price"> {{$total}} {{trans('main_trans.LE')}} </span>
@@ -140,12 +106,7 @@
                                 @endif
                             </h6>
                         </div>
-                        <input type="hidden" name="payment_mode" value="COD">
-
-                     @if($news)
-                        <label> {{trans('CheckOut_Trans.Promo_Code')}}: </label>
-                        <input type="text" name="promocode" placeholder="{{trans('CheckOut_Trans.enter_Promo_Code')}}" class="form-control mb-2" style="border-radius:10%" >
-                     @endif
+                        <input type="hidden" name="payment_mode" value="COD"> {{-- Cash on delivery (COD) --}}
 
                             <button type="submit" class="btn btn-success w-100"> {{trans('CheckOut_Trans.PlaceOrder')}} </button>
                         <button type="button" class="btn btn-primary w-100 mt-3 Razorpay_btn"> Pay with Razorpay </button>
@@ -199,16 +160,12 @@
                     var email     = $('.email').val();
                     var phone     = $('.phone').val();
                     var address   = $('.address').val();
-                    // var address2  = $('.address2').val();
-                    var city      = $('.city').val();
-                    var state     = $('.state').val();
-                    var country   = $('.country').val();
-                    var pincode   = $('.pincode').val();
 
-
+                    var APP_URL2 = localStorage.getItem('APP_URL'); // get app url from storage to work on js file
+                    var CallbackUrl = APP_URL2+'place-order';
                     $.ajax({
                         method: "POST",
-                        url: "/place-order",
+                        url: CallbackUrl,
                         data: {
                             'fname': firstname,
                             // 'fname' => it came from [$request->fname;] in function (PlaceOrder) in CheckOutControllerphp
@@ -216,11 +173,6 @@
                             'email': email,
                             'phoneNumber': phone,
                             'address': address,
-                            // 'address2': address2,
-                            'city': city,
-                            'state': state,
-                            'country': country,
-                            'pinCode': pincode,
                             'payment_mode': 'Paid by Paypal',
                             'payment_id': orderData.id,
                         },
@@ -228,7 +180,7 @@
                             // window.location.reload();
                             // alert(response.status);
 
-                            window.location.href = '/my-order';
+                            window.location.href = localStorage.getItem('APP_URL')+'my-order';
                             return response;
                         }
                     });

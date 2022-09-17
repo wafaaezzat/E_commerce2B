@@ -29,10 +29,8 @@ class CartController extends Controller
 
             $validator = Validator::make($request->all() , [
                 'quantity'    => 'required',
-                'size'        => 'required',
             ],[
                 'quantity.required'       => 'quantity of Product is required',
-                'size.required'           => 'size of product is required',
             ]);
 //            if ($validator->fails()){
 ////                toastr()->error('عذرا البيانات التي ادخلتها غير صحيحه');
@@ -55,8 +53,18 @@ class CartController extends Controller
                         $cartItem = new CartItem();
                         $cartItem->user_id = auth()->user()->id;
                         $cartItem->product_id = $product_id;
-                        $cartItem->product_quantity = $product_quantity;
-                        $cartItem->size = $request->size;
+                        $cartItem->quantity = $product_quantity;
+
+                        $num1 = $product_check->price;
+                        $num2 = $product_quantity;
+                        $multiplication = $num1 * $num2;
+
+                        $price = $multiplication;
+
+                        $TotalAfterDiscount = $price;
+
+                        $cartItem->price = $TotalAfterDiscount;
+
                         $cartItem->save();
 //                    return response()->json(['status' => $product_check->name . ' success added to cart']);
                         return response()->json(toastr()->success($product_check->name . ' Successfully Added to your Cart'));
@@ -94,11 +102,23 @@ class CartController extends Controller
     public function updateCartItems(Request $request)
     {
         $product_id = $request->input('prod_id'); // prod_id => this extend from ajax data
+        $product = Product::where('id', $product_id)->first();
         $productQuantity = $request->input('qty'); // qty => this extend from ajax data
         if (Auth::check()) {
             if (CartItem::where('product_id', $product_id)->where('user_id', Auth::id())->exists()) {
                 $cartItem = CartItem::where('product_id', $product_id)->where('user_id', Auth::id())->first();
-                $cartItem->product_quantity = $productQuantity;
+                $cartItem->quantity = $productQuantity;
+
+                $num1 = $product->price;
+                $num2 = $productQuantity;
+                $multiplication = $num1 * $num2;
+
+                $price = $multiplication;
+
+                $TotalAfterDiscount = $price;
+
+                $cartItem->price = $TotalAfterDiscount;
+
                 $cartItem->update();
                 return response()->json(toastr()->success(' Successfully Updated this Product from your Cart'));
             }

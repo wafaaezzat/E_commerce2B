@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
 
+
 // Increment Quantity Value
         $(document).on('click' , '.increment-btn' , function (e){
 
@@ -40,9 +41,12 @@ $(document).ready(function() {
     });
     function loadCart(){
 
+        var APP_URL2 = localStorage.getItem('APP_URL'); // get app url from storage to work on js file
+        var CallbackUrl = APP_URL2+'load-cart-data';
+
         $.ajax({
             method: "GET",
-            url: "/load-cart-data",
+            url: CallbackUrl,
 
             success: function (response) {
                 // $('.cart-count').html('');
@@ -70,9 +74,12 @@ $(document).ready(function() {
             }
         });
 
+            var APP_URL2 = localStorage.getItem('APP_URL'); // get app url from storage to work on js file
+            var CallbackUrl = APP_URL2+'add-to-cart';
+
         $.ajax({
             method: "POST",
-            url: "/add-to-cart",
+            url: CallbackUrl,
             data: {
                 "product_id": product_id,
                 "product_quantity": product_quantity,

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Complaint;
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,13 +16,13 @@ class ContactController extends Controller
 
     public function index()
     {
-        $newContacts = Complaint::all();
+        $newContacts = Contact::all();
         return view('admin.pages.Contacts.index' , compact('newContacts'));
     }
 
     public function destroy($id)
     {
-        $product = Complaint::findOrFail($id)->first();
+        $product = Contact::findOrFail($id)->first();
         $product->delete();
         toastr()->error('Successfully Deleted This Message');
         return redirect()->back();

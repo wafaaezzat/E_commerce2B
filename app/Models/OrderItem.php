@@ -9,12 +9,14 @@ class OrderItem extends Model
 {
     use HasFactory;
 
+    protected $table = 'order_items';
+
     public $guarded = [];
 
 
-    protected function orderItems()
+    protected function products()
     {
-        return $this->hasMany(OrderItem::class, 'order_id' , 'id');
+        return $this->belongsTo(Product::class, 'product_id' , 'id');
     }
 
 }

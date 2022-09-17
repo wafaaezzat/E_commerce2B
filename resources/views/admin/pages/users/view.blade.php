@@ -24,12 +24,12 @@
 
                           <div class="col-md-4 mt-3">
                               <label> {{trans('Orders_trans.First_Name')}} </label>
-                              <div class="border p-2">{{$user->name}}</div>
+                              <div class="border p-2">{{$user->firstname}}</div>
                           </div>
 
                           <div class="col-md-4 mt-3">
                           <label> {{trans('Orders_trans.Last_Name')}} </label>
-                          <div class="border p-2">{{$user->lname}}</div>
+                          <div class="border p-2">{{$user->lastname}}</div>
                           </div>
 
                           <div class="col-md-4 mt-3">
@@ -45,27 +45,10 @@
                           <div class="col-md-4 mt-3">
                           <label> {{trans('Orders_trans.Detailed_Address')}} </label>
                           <div class="border p-2">
-                              {{$user->address . '-'}}
-{{--                              {{$user->address2 . '-'}}--}}
-                              {{$user->city . '-'}}
-                              {{$user->state . '-'}}
-                              {{$user->country}}
+                              {{$user->address}}
                           </div>
                           </div>
 
-                          {{--                            <label>City</label>--}}
-                          {{--                            <div class="border">{{$user->city}}</div>--}}
-
-                          {{--                            <label>State</label>--}}
-                          {{--                            <div class="border">{{$user->state}}</div>--}}
-
-                          {{--                            <label>Country</label>--}}
-                          {{--                            <div class="border">{{$user->country}}</div>--}}
-
-                          <div class="col-md-4 mt-3">
-                          <label> {{trans('Orders_trans.Zip_Code')}} </label>
-                          <div class="border p-2">{{$user->pincode}}</div>
-                          </div>
                       </div>
                       </div>
 

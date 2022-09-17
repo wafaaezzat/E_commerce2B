@@ -33,7 +33,7 @@
                                         <tr>
                                             <td>{{$i++}}</td>
                                             <td> {{date('d-m-y' , strtotime($user->created_at))}} </td>
-                                            <td>{{$user->name . ' ' . $user->lname}}</td>
+                                            <td>{{$user->firstname . ' ' . $user->lastname}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->phone}}</td>
                                             <td>

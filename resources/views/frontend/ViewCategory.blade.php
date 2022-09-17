@@ -13,7 +13,7 @@
             <h2> Features Categories </h2>
                 @foreach($featured_categories as $cat)
                     <div class="item">
-                        <a href="{{route('view_category' , $cat->slug)}}">
+                        <a href="{{route('view_category' , $cat->id)}}">
                             <div class="card h-100">
                                 <img src="{{asset($cat->image)}}" height="150px" alt="">
 

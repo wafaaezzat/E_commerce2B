@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("name");
             $table->string("banner_image");
             $table->string("desc");
-            $table->decimal("price");
+            $table->bigInteger("price");
             $table->string('quantity');
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('trending')->default(0);

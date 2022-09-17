@@ -25,21 +25,19 @@
                                     <div class="border">{{$Order->user->firstname}}</div>
 
                                     <label> {{trans('Orders_trans.Last_Name')}} </label>
-                                    <div class="border">{{$Order->lastname}}</div>
+                                    <div class="border">{{$Order->user->lastname}}</div>
 
                                     <label> {{trans('Orders_trans.Email')}} </label>
-                                    <div class="border">{{$Order->email}}</div>
+                                    <div class="border">{{$Order->user->email}}</div>
 
                                     <label> {{trans('Orders_trans.Contact_No')}} </label>
-                                    <div class="border">{{$Order->phone}}</div>
+                                    <div class="border">{{$Order->user->phone}}</div>
 
                                     <label> {{trans('Orders_trans.Detailed_Address')}} </label>
                                     <div class="border">
-                                        {{$Order->address}}
+                                        {{$Order->user->address}}
                                     </div>
 
-{{--                                    <label> {{trans('Orders_trans.Zip_Code')}} </label>--}}
-{{--                                    <div class="border">{{$Order->pincode}}</div>--}}
                                 </div>
 
                                 <div class="col-md-6">
@@ -60,7 +58,7 @@
                                                     <td>{{$item->quantity}}</td>
                                                     <td> {{$item->price}} {{trans('main_trans.LE')}} </td>{{-- pending=> في انتظار الشحن --}}
                                                     <td>
-                                                        <img src="{{asset($item->products->image)}}" width="50px" alt="">
+                                                        <img src="{{asset($item->products->banner_image)}}" width="50px" alt="">
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -75,7 +73,7 @@
 
                                     <div class="my-4 float-end">
                                     <h4 class="px-2"> {{trans('Orders_trans.Grand_Total')}}: {{$Order->total_price}} {{trans('main_trans.LE')}}  </h4>
-{{--                                    <h4 class="px-2"> {{trans('Orders_trans.Payment_Mode')}}: {{$Order->payment_mode}} </h4>--}}
+                                    <h4 class="px-2"> {{trans('Orders_trans.Payment_Mode')}}: {{$Order->payment_mode}} </h4>
                                     <form action="{{route('orders.update' , $Order->id)}}" method="POST">
                                         @csrf
                                         @method('PUT')

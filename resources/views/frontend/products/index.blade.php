@@ -26,7 +26,7 @@
                     <div class="col-md-3  mb-3">
                         <a href="{{route('view_product',[$category->id , $prod->id])}}">
                         <div class="card h-100">
-                            <img src="{{asset($prod->image)}}" height="150px" alt="">
+                            <img src="{{asset($prod->banner_image)}}" height="150px" alt="">
 
                             <div class="card-body">
                                 <h5> {{$prod->name}} </h5>

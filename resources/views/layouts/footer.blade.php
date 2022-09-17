@@ -120,7 +120,7 @@
 
             <div class="col-lg col-6 ">
                 <i class="fas fa-users fa-3x"></i>
-                <span class="number"> {{App\Models\User::where('role',0)->count()}} </span>
+                <span class="number"> {{count(\App\Models\User::all()->where('role',0))}} </span>
                 <h5> {{trans('footer.All_clients')}} </h5>
             </div>
 
@@ -137,15 +137,10 @@
 {{--            </div>--}}
             <div class="col-lg col-6">
                 <i class="fas fa-cart-plus fa-3x"></i>
-                <span class="number">{{App\Models\Product::where('status',0)->count()}}</span>
+                <span class="number">{{App\Models\Product::where('status',1)->count()}}</span>
                 <h5> {{trans('footer.Available_Products')}} </h5>
             </div>
 
-{{--            <div class="col-lg col-6">--}}
-{{--                <i class="fa fa-star fa-3x"></i>--}}
-{{--                <span class="number">{{App\Models\Rating::count()}}</span>--}}
-{{--                <h5> {{trans('footer.All_Ratings')}} </h5>--}}
-{{--            </div>--}}
         </div>
     </div>
 </section>
@@ -168,7 +163,7 @@
             @csrf
             <div class="row my-2">
         <div class="col-md-6 col-12">
-                <input  required type="text" placeholder="{{trans('footer.UserName')}}" name="name" value="{{auth()->user()->name}}" class="form-control">
+                <input  required type="text" placeholder="{{trans('footer.UserName')}}" name="name" value="{{Auth::user()->firstname .' '. Auth::user()->lastname}}" class="form-control">
         </div>
             <div class="col-md-6 col-12">
                 <input required type="text" placeholder="{{trans('footer.PhoneNumber')}}" name="phone" value="{{auth()->user()->phone}}" class="form-control">

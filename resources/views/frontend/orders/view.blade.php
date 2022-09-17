@@ -41,28 +41,21 @@
                                     <h4> {{trans('Orders_trans.Shipping_Details')}} </h4>
                                     <hr>
                                     <label> {{trans('Orders_trans.First_Name')}} </label>
-                                    <div class="border">{{$myOrder->fname}}</div>
+                                    <div class="border">{{\Illuminate\Support\Facades\Auth::user()->firstname}}</div>
 
                                     <label> {{trans('Orders_trans.Last_Name')}} </label>
-                                    <div class="border">{{$myOrder->lname}}</div>
+                                    <div class="border">{{\Illuminate\Support\Facades\Auth::user()->lastname}}</div>
 
                                     <label> {{trans('Orders_trans.Email')}} </label>
-                                    <div class="border">{{$myOrder->email}}</div>
+                                    <div class="border">{{\Illuminate\Support\Facades\Auth::user()->email}}</div>
 
                                     <label> {{trans('Orders_trans.Contact_No')}} </label>
-                                    <div class="border">{{$myOrder->phone}}</div>
+                                    <div class="border">{{\Illuminate\Support\Facades\Auth::user()->phone}}</div>
 
                                     <label> {{trans('Orders_trans.Detailed_Address')}} </label>
                                     <div class="border">
-                                        {{$myOrder->address}}
-{{--                                        {{$myOrder->address2}}--}}
-                                        {{$myOrder->city}}
-                                        {{$myOrder->state}}
-                                        {{$myOrder->country}}
+                                        {{\Illuminate\Support\Facades\Auth::user()->address}}
                                     </div>
-
-                                    <label> {{trans('Orders_trans.Zip_Code')}} </label>
-                                    <div class="border">{{$myOrder->pincode}}</div>
                                 </div>
 
                                 <div class="col-md-6">
@@ -83,7 +76,7 @@
                                                     <td>{{$item->quantity}}</td>
                                                     <td>{{$item->price}} {{trans('main_trans.LE')}} </td>{{-- pending=> في انتظار الشحن --}}
                                                     <td>
-                                                       <img src="{{asset($item->products->image)}}" width="50px" alt="">
+                                                       <img src="{{asset($item->products->banner_image)}}" width="50px" alt="">
                                                     </td>
                                                 </tr>
                                             @endforeach

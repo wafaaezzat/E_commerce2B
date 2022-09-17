@@ -2,17 +2,11 @@ $(document).ready(function(){
    $('.Razorpay_btn').click(function (e){
       e.preventDefault();
 
-
        var firstname = $('.firstname').val();
        var lastname  = $('.lastname').val();
        var email     = $('.email').val();
        var phone     = $('.phone').val();
-       var address1  = $('.address1').val();
-       var address2  = $('.address2').val();
-       var city      = $('.city').val();
-       var state     = $('.state').val();
-       var country   = $('.country').val();
-       var pincode   = $('.pincode').val();
+       var address   = $('.address').val();
 
        if(!firstname)
        {
@@ -54,68 +48,18 @@ $(document).ready(function(){
            $('#phone_error').html();
        }
 
-       if(!address1)
+       if(!address)
        {
-           address1_error = 'Address1 is required';
-           $('#address1_error').html(address1_error);
+           address_error = 'Address is required';
+           $('#address_error').html(address_error);
        }
        else
        {
-           $('#address1_error').html();
+           $('#address_error').html();
        }
 
-       if(!address2)
-       {
-           address2_error = 'Address2 is required';
-           $('#address2_error').html(address2_error);
-       }
-       else
-       {
-           $('#address2_error').html();
-       }
-
-       if(!city)
-       {
-           city_error = 'City is required';
-           $('#city_error').html(city_error);
-       }
-       else
-       {
-           $('#city_error').html();
-       }
-
-       if(!state)
-       {
-           state_error = 'State is required';
-           $('#state_error').html(state_error);
-       }
-       else
-       {
-           $('#state_error').html();
-       }
-
-       if(!country)
-       {
-           country_error = 'Country is required';
-           $('#country_error').html(country_error);
-       }
-       else
-       {
-           $('#country_error').html();
-       }
-
-       if(!pincode)
-       {
-           pincode_error = 'PinCode is required';
-           $('#pincode_error').html(pincode_error);
-       }
-       else
-       {
-           $('#pincode_error').html();
-       }
-
-if(fname_error !== '' || lname_error !== '' || email_error !== '' || country_error !== '' || phone_error !== '' ||
-    address1_error !== '' || address2_error !== '' || city_error !== '' || state_error !== '' || country_error !== '' || pincode_error !== '')
+ if(fname_error !== '' || lname_error !== '' || email_error !== '' ||
+      phone_error !== '' || address_error !== '' )
     {
 
         var data = {
@@ -123,51 +67,49 @@ if(fname_error !== '' || lname_error !== '' || email_error !== '' || country_err
             'lastname'  : lastname,
             'email'     : email,
             'phone'     : phone,
-            'address1'  : address1,
-            'address2'  : address2,
-            'city'      : city,
-            'state'     : state,
-            'country'   : country,
-            'pincode'   : pincode,
+            'address'  : address,
         }
+
+        var APP_URL2 = localStorage.getItem('APP_URL'); // get app url from storage to work on js file
+        var CallbackUrl = APP_URL2+'proceed-to-pay';
 
         $.ajax({
             method: "POST",
-            url: "/proceed-to-pay",
+            url: CallbackUrl,
             data: data,
             success: function (response) {
 
                 var options = {
                     "key": "rzp_test_EcefOJQmB4FWmx", // Enter the Key ID generated from the Dashboard
-                    "amount": response.total_price * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                     //"amount": response.total_price * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                     "currency": "INR",
                     "name": response.firstname + '' + response.lastname,
                     "description": "Thank you for use us",
                     "image": "https://example.com/your_logo",
                     "handler": function (responsea){
-                        alert(responsea.razorpay_payment_id);
+                         // alert(responsea.razorpay_payment_id);
+
+                        var APP_URL2 = localStorage.getItem('APP_URL'); // get app url from storage to work on js file
+                        var CallbackUrl = APP_URL2+'place-order';
 
                         $.ajax({
                             method: "POST",
-                            url: "/place-order",
+                            url: CallbackUrl,
                             data: {
                                 'fname': response.firstname,
                                 // 'fname' => it came from [$request->fname;] in function (PlaceOrder) in CheckOutController.php
                                 'lname': response.lastname,
                                 'email': response.email,
                                 'phoneNumber': response.phone,
-                                'address1': response.address1,
-                                'address2': response.address2,
-                                'city': response.city,
-                                'state': response.state,
-                                'country': response.country,
-                                'pinCode': response.pincode,
+                                'address': response.address,
                                 'payment_mode': 'Paid by Razorpay',
                                 'payment_id': responsea.razorpay_payment_id,
                             },
-                            success: function (responseb) {
+                            success: function (response) {
                                 window.location.reload();
-                                // alert(responseb.status);
+                                 // alert(response.status);
+
+                                window.location.href = localStorage.getItem('APP_URL')+'my-order';
                                 return response;
                             }
                         });

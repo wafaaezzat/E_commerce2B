@@ -31,6 +31,9 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     Route::resource('orders', App\Http\Controllers\Admin\OrderController::class);
     Route::get('ordersHistory', [App\Http\Controllers\Admin\OrderController::class, 'ordersHistory'])->name('ordersHistory');
 
+//    Contacts
+    Route::resource('Contacts' , App\Http\Controllers\Admin\ContactController::class);
+
 //    Users
     Route::get('users', [App\Http\Controllers\Admin\FrontendController::class, 'users'])->name('users');
     Route::get('usersView/{id}', [App\Http\Controllers\Admin\FrontendController::class, 'usersView'])->name('usersView');

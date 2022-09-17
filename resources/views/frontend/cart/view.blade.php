@@ -25,7 +25,7 @@
              @foreach($cartItems as $item)
                 <div class="row my-3 product_data"> {{-- product_data => مستخدمها فال ajax--}}
                     <div class="col-md-2">
-                        <img src="{{asset($item->product->image)}}" height="70px" width="70px" alt="">
+                        <img src="{{asset($item->product->banner_image)}}" height="70px" width="70px" alt="">
                     </div>
 
                     <div class="col-md-3 my-auto">
@@ -39,36 +39,22 @@
 
                     <input type="hidden" class="prod_id"  value="{{$item->product_id}}">
 
-                    @if($item->product->quantity >= $item->product_quantity)
+                    @if($item->product->quantity >= $item->quantity)
                     <div class="col-md-3">
                         <label> Quantity </label>
                         <div class="input-group text-center mb-3" style="width: 130px">
                             <button class="input-group-text changeQuantity decrement-btn" style="cursor: default"> - </button>
-                            <input type="text" name="quantity" value="{{$item->product_quantity}}" class="form-control text-center qty-input">
+                            <input type="text" name="quantity" value="{{$item->quantity}}" class="form-control text-center qty-input">
                             <button class="input-group-text changeQuantity increment-btn" style="cursor: default"> + </button>
                         </div>
                     </div>
-{{--                        @include('frontend.cart.radioCart');--}}
 
-{{--                    <div class="col-md-2 mb-3">--}}
-{{--                        <label> Size </label>--}}
-{{--                        <select class="form-control  size" name='size'>--}}
-{{--                            <option selected disabled> Select Size </option>--}}
-
-{{--                            @foreach($sizes as $size)--}}
-{{--                                <option value="{{$size['id']}}" >{{$size['size_id']}} </option> دا عشان يرجعلي اللي موجود معايا بالفعل--}}
-{{--                            @endforeach--}}
-
-{{--                        </select>--}}
-{{--                        @error('size')<div class="text-danger">{{$message}}</div>@enderror--}}
-{{--                    </div>--}}
-
-                            @php $total += $item->product->price * $item->product_quantity @endphp
+                            @php $total += $item->product->price * $item->quantity @endphp
                         @else
                         <div class="col-md-3">
                             <div class="input-group text-center mb-3" style="width: 190px;">
                                 <button class="input-group-text changeQuantity decrement-btn" style="cursor: default"> - </button>
-                                <input type="text" name="quantity" value="{{$item->product_quantity}}" class="form-control text-center qty-input">
+                                <input type="text" name="quantity" value="{{$item->quantity}}" class="form-control text-center qty-input">
                                 <h6 class="badge bg-danger">  {{trans('Carts_Trans.Out_Of_Stock')}} </h6>
                             </div>
                         </div>

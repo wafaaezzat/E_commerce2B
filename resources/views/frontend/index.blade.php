@@ -12,13 +12,17 @@
 {{-- Start Category --}}
        @if($featured_categories->count() >= 1)
        <div class="container py-5">
-           <div class="row">
-               <h2 style="color: #fff"> {{trans('main_trans.Features_Categories')}} </h2>
+           <div class="row" id="Features_Categories">
+               <h3 class="fav-title text-center mb-5" style="color: #fff">
+                   <span class="right"></span>
+                   {{trans('main_trans.Features_Categories')}}
+                   <span class="left"></span>
+               </h3>
                <div class="owl-carousel owl-theme mt-5">
                    @foreach($featured_categories as $cat)
                        <div class="item" th:each="tempCard : ${cards}">
                            <a href="{{route('view_category',$cat->id)}}">
-                           <div class="card h-100 my-card-style">
+                           <div class="card  my-card-style" style="height: 250px !important;">
                                <img src="{{asset($cat->image)}}" height="150px" alt="">
 
                                <div class="card-body">
@@ -39,6 +43,24 @@
 
        <style>
            /* ****************** Start Products ******************* */
+            .fav-title .right {
+                margin-left: 20px;
+                width: 100px;
+                height: 4px;
+                background-color: #F37021;
+                display: inline-block;
+                border-radius: 20px;
+                max-width: 200px;
+            }
+           .fav-title .left {
+               margin-right: 20px;
+               width: 100px;
+               height: 4px;
+               background-color: #F37021;
+               display: inline-block;
+               border-radius: 20px;
+               max-width: 200px;
+           }
            .Products{
                padding: 100px 0;
            }
@@ -115,7 +137,11 @@
            <div class="container">
                @foreach($categories as $category)
                <div class="row">
-                   <h2 style="color: #fff">  {{$category->name}} </h2>
+                   <h3 class="fav-title text-center mb-5" style="color: #fff">
+                       <span class="right"></span>
+                         {{$category->name}}
+                       <span class="left"></span>
+                   </h3>
                    <div class="owl-carousel owl-theme my-3">
                        @foreach($featured_products as $Prod)
                            @if($category->id === $Prod->category_id)

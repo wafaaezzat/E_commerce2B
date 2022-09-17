@@ -111,4 +111,9 @@
         </div>
     </div>
 
+    <script>
+        var APP_URL = "{{ env('APP_URL') }}";
+        localStorage.setItem('APP_URL', APP_URL); // set app url to storage to get after on js file to work
+
+    </script>
 @endsection

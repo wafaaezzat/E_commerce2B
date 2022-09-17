@@ -33,7 +33,7 @@ Route::group(
 
     Route::group(['middleware' => ['auth'], 'namespace' => 'Frontend'], function () {
         Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index'])->name('home');
-        Route::post('submitContact', [App\Http\Controllers\Frontend\ComplaintController::class, 'submitContact'])->name('submitContact');
+        Route::post('submitContact', [App\Http\Controllers\Frontend\ContactController::class, 'submitContact'])->name('submitContact');
         Route::get('category', [App\Http\Controllers\Frontend\FrontendController::class, 'category'])->name('category');
         Route::get('view-category/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'ViewCategory'])->name('view_category');
         Route::get('view-product/{catId}/{prodId}', [App\Http\Controllers\Frontend\FrontendController::class, 'ViewProduct'])->name('view_product');

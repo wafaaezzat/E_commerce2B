@@ -9,11 +9,18 @@ class OrderDetail extends Model
 {
     use HasFactory;
 
+    protected $table = 'order_details';
+
     public $guarded = [];
 
-    protected function user(): \Illuminate\Database\Eloquent\Relations\HasMany
+    protected function user()
     {
-        return $this->belong(user::class, 'user_id' , 'id');
+        return $this->belongsTo(User::class, 'user_id' , 'id');
+    }
+
+    protected function orderItems()
+    {
+        return $this->hasMany(OrderItem::class, 'order_id' , 'id');
     }
 
 }
