@@ -66,7 +66,7 @@
         width: 100%;
         height: 50px;
         margin-bottom: 40px;
-        border-radius: 20px;
+        border-radius: 10px !important;
     }
 
     .Contact_Us .put button{

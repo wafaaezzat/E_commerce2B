@@ -11,7 +11,7 @@ return [
     'Email'=>'Your Email',
     'Message'=>'Your Message For Us',
     'copy_right'=>' Copy Right 2022 © By',
-    'copy_right_Name'=>'Ahmed Ashmawy',
+    'copy_right_Name'=>'2b_php',
     'rights_reserved'=>'All Rights Reserved',
 
 ];
