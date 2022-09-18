@@ -163,15 +163,15 @@
             @csrf
             <div class="row my-2">
         <div class="col-md-6 col-12">
-                <input  required type="text" placeholder="{{trans('footer.UserName')}}" name="name" value="{{Auth::user()->firstname .' '. Auth::user()->lastname}}" class="form-control">
+                <input  required type="text" readonly="readonly" placeholder="{{trans('footer.UserName')}}" name="name" value="{{Auth::user()->firstname .' '. Auth::user()->lastname}}" class="form-control">
         </div>
             <div class="col-md-6 col-12">
-                <input required type="text" placeholder="{{trans('footer.PhoneNumber')}}" name="phone" value="{{auth()->user()->phone}}" class="form-control">
+                <input required type="text" readonly="readonly" placeholder="{{trans('footer.PhoneNumber')}}" name="phone" value="{{auth()->user()->phone}}" class="form-control">
             </div>
             </div>
             <div class="row">
         <div class="col-12">
-                <input  required type="email" placeholder="{{trans('footer.Email')}}" name="email" value="{{auth()->user()->email}}" class="form-control">
+                <input  required type="email" readonly="readonly" placeholder="{{trans('footer.Email')}}" name="email" value="{{auth()->user()->email}}" class="form-control">
         </div>
             </div>
             <div class="row my-2">
