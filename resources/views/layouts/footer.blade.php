@@ -203,7 +203,7 @@
             </ul>
         </div>
 {{--        <p> Copy Right 2022 © By <a href="#"> Ahmed Ads </a> All Rights Reserved </p>--}}
-        <p> {{trans('footer.copy_right')}} <a href="https://www.facebook.com/profile.php?id=100008262872020" target="_blank">
+        <p> {{trans('footer.copy_right')}} <a href="https://www.facebook.com/2BEgypt" target="_blank">
                 {{trans('footer.copy_right_Name')}}</a> {{trans('footer.rights_reserved')}} </p>
     </div>
 </footer>
